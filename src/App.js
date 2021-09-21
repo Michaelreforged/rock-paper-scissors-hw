@@ -1,5 +1,9 @@
 import react, { useEffect, useState } from "react";
-import { Button, Container } from "semantic-ui-react";
+import { Button, Container, Image, Segment } from "semantic-ui-react";
+import styled from "styled-components";
+import Paper from "./images/Paper.png"
+import Rock from "./images/Rock.png"
+import Scissors from "./images/Scissors.png"
 
 function App() {
   const[player,setPlayer] = useState(null);
@@ -89,25 +93,33 @@ function App() {
   const renderRecord = () =>{
     return record.map((i, index)=>{
       return(
+        <Segment>
       <p key = {i.id} > {index+1}. {i}</p>
+      </Segment>
       )
     })
   }
 
-  // setToggle(true)
   return (
     <Container>
       <h1>Welcome to Rock Paper Scissors</h1>
-      <Button.Group>
-        <Button onClick= {()=> setPlayer(options[0])}>Rock</Button>
-        <Button onClick= {()=> setPlayer(options[1])}>Paper</Button>
-        <Button onClick= {()=> setPlayer(options[2])}>Scissors</Button>
-      </Button.Group>
+      <Segment>
+        <Imagestd src={Rock} onClick= {()=> setPlayer(options[0])}/>
+        <Imagestd src={Paper} onClick= {()=> setPlayer(options[1])}/>
+        <Imagestd src={Scissors} onClick= {()=> setPlayer(options[2])}/>
+      </Segment>
+      <Segment>
         <p>Player Score: {score.player} Computer Score: {score.comp} Draws: {score.draw}</p>
+        </Segment>
         <Button onClick= {()=> setClear(true)}>Clear</Button>
         {renderRecord()}
     </Container>
   );
 }
 
+const Imagestd = styled.img`
+max-height: 150px;
+`
+
 export default App;
+
